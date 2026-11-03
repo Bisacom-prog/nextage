@@ -1,3 +1,4 @@
+import { CookieBanner } from './CookieBanner';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { JsonLd } from './JsonLd';
@@ -20,6 +21,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer settings={settings} />
+      <CookieBanner />
       <JsonLd
         data={{
           '@context': 'https://schema.org',

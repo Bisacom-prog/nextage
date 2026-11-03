@@ -1,6 +1,7 @@
 'use client';
 
 import { CheckCircle2, Loader2, TriangleAlert } from 'lucide-react';
+import Link from 'next/link';
 import { type FormEvent, useEffect, useId, useRef, useState } from 'react';
 
 type ProgrammeGroup = { category: string; titles: string[] };
@@ -159,7 +160,15 @@ export function InquiryForm({
       </div>
 
       <p className="mt-4 text-xs leading-5 text-slate-500">
-        By submitting this form, you agree that NextAge Consult may contact you about your inquiry or registration.
+        By submitting this form, you agree that NextAge Consult may contact you about your inquiry or registration, and to our{' '}
+        <Link href="/terms" className="focus-ring rounded underline hover:text-nac-navy">
+          Terms of Use
+        </Link>
+        . See our{' '}
+        <Link href="/privacy" className="focus-ring rounded underline hover:text-nac-navy">
+          Privacy Policy
+        </Link>{' '}
+        for how we handle your information.
       </p>
     </form>
   );

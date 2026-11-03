@@ -85,6 +85,14 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-3 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <span>Learn · Create · Earn · Impact</span>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/privacy" className="focus-ring rounded hover:text-white">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="focus-ring rounded hover:text-white">
+              Terms of Use
+            </Link>
+          </nav>
           <span>© {new Date().getFullYear()} NEXTAGE CONSULT. All rights reserved.</span>
         </div>
       </div>
