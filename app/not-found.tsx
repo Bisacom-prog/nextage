@@ -16,7 +16,7 @@ export default function NotFound() {
             Back to home
           </Link>
           <Link href="/programs" className="btn-ghost-dark">
-            Browse programs
+            Browse programmes
           </Link>
         </div>
       </div>

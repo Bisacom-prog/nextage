@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { CTA } from '@/components/CTA';
 import { PageHero } from '@/components/PageHero';
 import { SectionHeading } from '@/components/SectionHeading';
-import cohortPoster from '@/public/cohort-poster.jpg';
+import learnersImage from '@/public/nac-learners.jpg';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -25,7 +25,7 @@ export default function AboutPage() {
         eyebrow="About NextAge"
         title="Building capable people for a changing world."
         body="NextAge Consult exists to raise solution providers — people equipped with the knowledge, practical skills and confidence to create opportunities for themselves and positive impact for others."
-        cta={{ label: 'Explore Programs', href: '/programs' }}
+        cta={{ label: 'Explore Programmes', href: '/programs' }}
       />
       <section className="section-pad">
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -49,11 +49,11 @@ export default function AboutPage() {
           </div>
           <div className="overflow-hidden rounded-[2rem] bg-nac-navy p-3 shadow-soft">
             <Image
-              src={cohortPoster}
-              alt="NextAge Consult cohort registration poster"
+              src={learnersImage}
+              alt="NextAge Consult learners with their mentor"
               placeholder="blur"
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[4/3] w-full rounded-[1.45rem] object-cover object-top"
+              className="aspect-[16/10] w-full rounded-[1.45rem] object-cover object-top"
             />
           </div>
         </div>

@@ -33,7 +33,7 @@ export const defaultHero = {
 };
 
 export const defaultStats: Stat[] = [
-  { value: '20+', label: 'Programs' },
+  { value: '20+', label: 'Programmes' },
   { value: '4', label: 'Learning pathways' },
   { value: '360°', label: 'Practical support' },
   { value: 'Real', label: 'Community impact' },

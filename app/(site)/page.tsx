@@ -6,8 +6,8 @@ import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCard } from '@/components/ServiceCard';
 import { AcademicCards, ProgramList } from '@/components/ProgramList';
 import { getPrograms, getServices, getSiteSettings } from '@/lib/content';
-import cohortPoster from '@/public/cohort-poster.jpg';
 import brandImage from '@/public/nac-brand.jpg';
+import learnersImage from '@/public/nac-learners.jpg';
 
 export const metadata = { alternates: { canonical: '/' } };
 
@@ -29,7 +29,7 @@ export default async function HomePage() {
             <p className="mt-6 max-w-2xl text-pretty text-base leading-8 text-white/75 sm:text-lg">{hero.body}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/programs" className="btn-gold py-4">
-                Explore Programs <ArrowRight size={18} aria-hidden />
+                Explore Programmes <ArrowRight size={18} aria-hidden />
               </Link>
               <Link href="/contact" className="btn-ghost-dark py-4">
                 Contact Us
@@ -40,12 +40,12 @@ export default async function HomePage() {
             <div aria-hidden className="absolute -left-7 top-10 h-32 w-32 rounded-full bg-nac-gold/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-2xl">
               <Image
-                src={cohortPoster}
-                alt="NextAge 360 Equip Hub training cohort poster"
+                src={learnersImage}
+                alt="NextAge 360 Equip Hub learners with their mentor"
                 preload
                 placeholder="blur"
                 sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 100vw"
-                className="aspect-[4/3] w-full rounded-[1.45rem] object-cover object-top"
+                className="aspect-[16/10] w-full rounded-[1.45rem] object-cover object-top"
               />
               <ul className="absolute bottom-6 left-6 right-6 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-nac-navy/90 p-4 backdrop-blur sm:grid-cols-4">
                 {['Skills', 'People', 'Opportunities', 'Impact'].map((item) => (
@@ -103,7 +103,7 @@ export default async function HomePage() {
             />
           </figure>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-nac-cyan">Featured program</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-nac-cyan">Featured programme</p>
             <h2 id="featured-program" className="mt-3 text-4xl font-extrabold tracking-tight">
               NEXTAGE 360 EQUIP HUB
             </h2>
@@ -128,7 +128,7 @@ export default async function HomePage() {
       <section className="section-pad" aria-labelledby="technical-skills">
         <div className="container-page">
           <div className="flex items-end justify-between gap-6">
-            <SectionHeading id="technical-skills" eyebrow="Our programs" title="Technical Skills" />
+            <SectionHeading id="technical-skills" eyebrow="Our programmes" title="Technical Skills" />
             <Link href="/programs#technical" className="focus-ring hidden rounded text-sm font-bold text-nac-blue-ink hover:text-nac-navy sm:block">
               View all <span aria-hidden>→</span>
               <span className="sr-only"> technical skills</span>

@@ -6,7 +6,7 @@ import { AcademicCards, ProgramList } from '@/components/ProgramList';
 import { getPrograms } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Programs',
+  title: 'Programmes',
   description: 'Technical, vocational and academic programmes at the NextAge 360 Equip Hub — from AI tools and web design to baking, soap making and core subjects.',
   alternates: { canonical: '/programs' },
 };
@@ -21,7 +21,7 @@ export default async function ProgramsPage() {
         eyebrow="NextAge 360 Equip Hub"
         title="Practical programmes for learning, work and enterprise."
         body="Choose from technical, vocational and academic pathways designed to develop useful, confidence-building skills."
-        cta={{ label: 'Register for a Program', href: '/register' }}
+        cta={{ label: 'Register for a Programme', href: '/register' }}
       />
       <nav aria-label="Programme categories" className="sticky top-20 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
         <ul className="container-page flex gap-2 overflow-x-auto py-3 text-sm font-bold">

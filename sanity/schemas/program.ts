@@ -3,7 +3,7 @@ import { iconOptions } from '../../lib/icon-keys';
 
 export const program = defineType({
   name: 'program',
-  title: 'Programs',
+  title: 'Programmes',
   type: 'document',
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required().max(80) }),

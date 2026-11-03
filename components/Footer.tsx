@@ -19,7 +19,7 @@ const socialIcons: Record<SocialPlatform, IconType> = {
 const quickLinks = [
   ['About', '/about'],
   ['Services', '/services'],
-  ['Programs', '/programs'],
+  ['Programmes', '/programs'],
   ['Register', '/register'],
   ['Contact', '/contact'],
 ] as const;

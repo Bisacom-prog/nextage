@@ -13,5 +13,5 @@ export const structure: StructureResolver = (S) =>
         .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
       S.divider(),
       S.documentTypeListItem('service').title('Services'),
-      S.documentTypeListItem('program').title('Programs'),
+      S.documentTypeListItem('program').title('Programmes'),
     ]);
