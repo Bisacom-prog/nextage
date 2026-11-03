@@ -2,7 +2,7 @@
 
 import { CheckCircle2, Loader2, TriangleAlert } from 'lucide-react';
 import Link from 'next/link';
-import { type FormEvent, useEffect, useId, useRef, useState } from 'react';
+import { type FormEvent, useId, useRef, useState } from 'react';
 
 type ProgrammeGroup = { category: string; titles: string[] };
 type Status = 'idle' | 'sending' | 'success' | 'error';
@@ -18,12 +18,9 @@ export function InquiryForm({
 }) {
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');
+  // performance.now() origin: page load, not hydration, so visitors on slow connections who type before the page is interactive aren't mistaken for bots.
   const startedAt = useRef(0);
   const id = useId();
-
-  useEffect(() => {
-    startedAt.current = Date.now();
-  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -33,7 +30,7 @@ export function InquiryForm({
     setStatus('sending');
     setMessage('');
 
-    const payload = { ...Object.fromEntries(new FormData(form).entries()), mode, startedAt: startedAt.current };
+    const payload = { ...Object.fromEntries(new FormData(form).entries()), mode, elapsedMs: Math.round(performance.now() - startedAt.current) };
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15_000);
 
@@ -49,7 +46,7 @@ export function InquiryForm({
       setStatus('success');
       setMessage(result.message || 'Thank you. Your message has been received.');
       form.reset();
-      startedAt.current = Date.now();
+      startedAt.current = performance.now();
     } catch (error) {
       setStatus('error');
       setMessage(
@@ -69,6 +66,9 @@ export function InquiryForm({
 
   return (
     <form
+      // POST fallback: if someone submits before JavaScript loads, their details must not end up in the page URL.
+      method="post"
+      action="/api/inquiry"
       onSubmit={handleSubmit}
       aria-describedby={message ? statusId : undefined}
       aria-busy={status === 'sending'}
@@ -97,9 +97,9 @@ export function InquiryForm({
             autoComplete="tel"
             maxLength={30}
             pattern="\+?[\d\s\(\)\.\-]{7,20}"
-            title="Enter a valid phone number, e.g. 024 342 0016"
+            title="Enter a valid phone number, e.g. 024 123 4567"
             className="field"
-            placeholder="e.g. 024 342 0016"
+            placeholder="e.g. 024 123 4567"
           />
         </label>
       </div>

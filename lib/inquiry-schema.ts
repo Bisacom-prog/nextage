@@ -23,8 +23,8 @@ export const inquirySchema = z.object({
     .pipe(z.string().max(3000, 'Your message is too long (3,000 characters max).')),
   /** Honeypot – must be empty. */
   website: z.string().optional().default(''),
-  /** Timestamp (ms) when the form was rendered – used as a simple bot time-trap. */
-  startedAt: z.coerce.number().optional(),
+  /** Milliseconds the visitor spent on the form, measured client-side so device clock skew can't matter. */
+  elapsedMs: z.coerce.number().optional(),
 });
 
 export type Inquiry = z.infer<typeof inquirySchema>;

@@ -83,7 +83,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-col gap-3 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-page flex flex-col gap-3 py-5 text-xs text-white/60 lg:flex-row lg:items-center lg:justify-between">
           <span>Learn · Create · Earn · Impact</span>
           <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="focus-ring rounded hover:text-white">
@@ -94,6 +94,18 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             </Link>
           </nav>
           <span>© {new Date().getFullYear()} NEXTAGE CONSULT. All rights reserved.</span>
+          <span>
+            Developed by{' '}
+            <a
+              href="https://www.bisacom.dev"
+              target="_blank"
+              rel="noopener"
+              aria-label="Bisacom.dev (opens in a new tab)"
+              className="focus-ring rounded font-semibold text-white/80 underline-offset-4 hover:text-nac-gold hover:underline"
+            >
+              Bisacom.dev
+            </a>
+          </span>
         </div>
       </div>
     </footer>

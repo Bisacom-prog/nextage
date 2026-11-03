@@ -74,6 +74,9 @@ For production, verify the sending domain in Resend and replace `CONTACT_FROM_EM
 - `/api/inquiry` enforces same-origin requests, JSON only, a 16 KB body cap, zod validation, a programme allow-list, honeypot + time-trap bot checks and per-IP rate limiting (5 per 10 min).
 - The in-memory rate limiter is per serverless instance. For a hard global limit, add a **Vercel Firewall → Rate limiting** rule on `/api/inquiry`.
 - In production the form returns a 503 (instead of silently succeeding) if `RESEND_API_KEY` is missing, so leads are never lost unnoticed.
+- The time-trap uses time measured in the browser (immune to device clock skew) and fails visibly, so a real visitor who trips it can resubmit.
+- No remote image hosts are allowed in `next.config.ts`. Add only `cdn.sanity.io/images/<projectId>/**` if CMS images are introduced.
+- `package.json` `overrides` pin patched versions of vulnerable transitive dependencies. Run `npm audit --omit=dev` after upgrading Sanity and drop overrides the new versions make unnecessary.
 
 ## 5. Deploy to Vercel
 
@@ -101,6 +104,8 @@ npm run build
 - `/programs` — Programs
 - `/register` — Registration
 - `/contact` — Contact
+- `/privacy` — Privacy Policy (includes the cookie notice details)
+- `/terms` — Terms of Use
 - `/studio` — Sanity Studio (full-screen, noindex)
 - `/api/inquiry` — contact/registration form endpoint
 - `/api/revalidate` — Sanity webhook endpoint
@@ -113,5 +118,5 @@ Technical skills, vocational skills, academic support, core consulting services,
 
 - Set `NEXT_PUBLIC_SITE_URL` if the final domain is not `nextageconsult.com`.
 - Social links, phone, email and venue are editable in Sanity → Site Settings (fallbacks live in `lib/site-data.ts`).
-- Confirm final venue, programme fees/schedules and legal/privacy content before launch.
-- Add analytics/cookie consent if required by your operating jurisdiction and analytics setup.
+- Confirm final venue, programme fees/schedules and have the client review the Privacy Policy and Terms of Use.
+- The cookie banner is a notice only, because the site sets no analytics or advertising cookies. Adding analytics requires real consent controls and a Privacy Policy update.

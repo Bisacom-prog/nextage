@@ -14,7 +14,7 @@ function csp(extra: { img?: string; connect?: string; script?: string; frame?: s
     `default-src 'self'`,
     `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}${extra.script ? ` ${extra.script}` : ''}`,
     `style-src 'self' 'unsafe-inline'`,
-    `img-src 'self' data: blob: https://cdn.sanity.io${extra.img ? ` ${extra.img}` : ''}`,
+    `img-src 'self' data: blob:${extra.img ? ` ${extra.img}` : ''}`,
     `font-src 'self' data:${extra.font ? ` ${extra.font}` : ''}`,
     `connect-src 'self'${isDev ? ' ws:' : ''}${extra.connect ? ` ${extra.connect}` : ''}`,
     `frame-src ${extra.frame ?? `'none'`}`,
@@ -29,7 +29,8 @@ function csp(extra: { img?: string; connect?: string; script?: string; frame?: s
 }
 
 const securityHeaders = [
-  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+  // No `preload`: that is a commitment for the whole registrable domain, which the client should make deliberately once a custom domain is live.
+  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
@@ -44,7 +45,8 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 30,
-    remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io' }],
+    // All images are local. No remotePatterns, so the optimiser can't be used to fetch arbitrary URLs.
+    // If CMS images are added later, allow only this project's path: /images/<projectId>/** on cdn.sanity.io.
   },
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-icons'],

@@ -61,11 +61,16 @@ export async function POST(request: Request) {
   }
   const data = parsed.data;
 
-  // Bots: honeypot filled or form submitted implausibly fast. Pretend success so they don't adapt.
-  const tooFast = data.startedAt !== undefined && Date.now() - data.startedAt < MIN_FILL_MS;
-  if (data.website || tooFast) return json('Thanks. Your submission has been received.');
+  // Bots: honeypot filled. Pretend success so they don't adapt.
+  if (data.website) return json('Thanks. Your submission has been received.');
+  // Implausibly fast. Fail visibly rather than fake success, so a real person who trips it can retry instead of losing their message.
+  if (data.elapsedMs !== undefined && data.elapsedMs < MIN_FILL_MS) {
+    return json('That was quicker than expected. Please wait a moment and submit again.', 429);
+  }
 
-  if (data.mode === 'register') {
+  if (data.mode === 'contact') {
+    data.program = '';
+  } else {
     const allowed = (await getProgrammeOptions()).flatMap((g) => g.titles);
     if (!allowed.includes(data.program)) return json('Please select a programme from the list.', 400);
   }
