@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0d1b2a;
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Anchor targets shouldn't hide under the sticky header. */
+:target,
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: #f8b817;
+  color: #03142b;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .kicker {
+    @apply text-xs font-bold uppercase tracking-[0.22em] text-nac-blue-ink;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nac-blue focus-visible:ring-offset-2;
+  }
+
+  .btn {
+    @apply focus-ring inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-center font-bold transition duration-200 motion-safe:hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply btn bg-nac-blue-ink text-white hover:bg-nac-navy;
+  }
+
+  .btn-gold {
+    @apply btn bg-nac-gold font-black text-nac-navy hover:bg-[#ffc93d];
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-nac-navy text-nac-navy hover:bg-white;
+  }
+
+  .btn-ghost-dark {
+    @apply btn border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/15;
+  }
+
+  .field {
+    @apply focus-ring w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-normal text-slate-900 transition placeholder:text-slate-400 hover:border-slate-400 aria-[invalid=true]:border-red-500;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white;
+  }
+}
